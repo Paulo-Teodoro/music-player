@@ -14,4 +14,7 @@ module.exports = {
       extends: ["plugin:cypress/recommended"],
     },
   ],
+  env: {
+    node: true,
+  },
 };
