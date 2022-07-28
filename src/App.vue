@@ -1,3 +1,17 @@
 <template>
-  <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <app-header />
+  <app-auth />
 </template>
+
+<script>
+import AppHeader from "./components/AppHeader.vue";
+import AppAuth from "./components/AppAuth.vue";
+
+export default {
+  name: "App",
+  components: {
+    AppHeader,
+    AppAuth,
+  },
+};
+</script>
