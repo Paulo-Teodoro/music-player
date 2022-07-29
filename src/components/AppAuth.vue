@@ -33,19 +33,31 @@
           <ul class="flex flex-wrap mb-4">
             <li class="flex-auto text-center">
               <a
-                class="block rounded py-3 px-4 transition hover:text-white text-white bg-blue-600"
+                class="block rounded py-3 px-4 transition"
                 href="#"
+                @click.prevent="tab = 'login'"
+                :class="{
+                  'hover:text-white text-white bg-blue-600': tab === 'login',
+                  'hover:text-blue-600': tab === 'register',
+                }"
                 >Login</a
               >
             </li>
             <li class="flex-auto text-center">
-              <a class="block rounded py-3 px-4 transition" href="#"
+              <a
+                class="block rounded py-3 px-4 transition"
+                href="#"
+                @click.prevent="tab = 'register'"
+                :class="{
+                  'hover:text-white text-white bg-blue-600': tab === 'register',
+                  'hover:text-blue-600': tab === 'login',
+                }"
                 >Register</a
               >
             </li>
           </ul>
 
-          <form>
+          <form v-show="tab === 'login'">
             <div class="mb-3">
               <label class="inline-block mb-2">Email</label>
               <input
@@ -69,7 +81,7 @@
               Submit
             </button>
           </form>
-          <form>
+          <form v-show="tab === 'register'">
             <div class="mb-3">
               <label class="inline-block mb-2">Name</label>
               <input
@@ -145,6 +157,11 @@ import { useModalStore } from "../stores/modal";
 
 export default {
   name: "AppAuth",
+  data() {
+    return {
+      tab: "login",
+    };
+  },
   computed: {
     ...mapState(useModalStore, ["hiddenClass"]),
     ...mapWritableState(useModalStore, ["isOpen"]),
