@@ -186,9 +186,9 @@ export default {
         email: "required|email",
         age: "required|min_value:18|max_value:120",
         password: "required|min:6|max:30",
-        confirm_password: "confirmed:@password",
-        country: "required|excluded:Antarctica",
-        tos: "required|one_of:1",
+        confirm_password: "passwords_mismatch:@password",
+        country: "required|country_excluded:Antarctica",
+        tos: "tos",
       },
     };
   },
