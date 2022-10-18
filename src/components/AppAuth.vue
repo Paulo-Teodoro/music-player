@@ -57,22 +57,26 @@
             </li>
           </ul>
 
-          <form v-show="tab === 'login'">
+          <vee-form v-show="tab === 'login'" :validation-schema="loginSchema">
             <div class="mb-3">
               <label class="inline-block mb-2">Email</label>
-              <input
+              <vee-field
+                name="email"
                 type="email"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Enter Email"
               />
+              <ErrorMessage class="text-red-600" name="email" />
             </div>
             <div class="mb-3">
               <label class="inline-block mb-2">Password</label>
-              <input
+              <vee-field
+                name="password"
                 type="password"
                 class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
                 placeholder="Password"
               />
+              <ErrorMessage class="text-red-600" name="password" />
             </div>
             <button
               type="submit"
@@ -80,7 +84,7 @@
             >
               Submit
             </button>
-          </form>
+          </vee-form>
           <vee-form
             v-show="tab === 'register'"
             :validation-schema="schema"
@@ -189,6 +193,10 @@ export default {
         confirm_password: "passwords_mismatch:@password",
         country: "required|country_excluded:Antarctica",
         tos: "tos",
+      },
+      loginSchema: {
+        email: "required|email",
+        password: "required",
       },
     };
   },
